@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 // import logo from './logo.svg';
-import './Article.css';
-import PropTypes from 'prop-types';
-import CommentList from '../comment-list/CommentList';
-import toggleOpen from '../../decorators/toggleOpen';
-
-
+import "./Article.css";
+import PropTypes from "prop-types";
+import CommentList from "../comment-list/CommentList";
+// import toggleOpen from '../../decorators/toggleOpen';
 
 class Article extends Component {
   static propTypes = {
@@ -14,32 +12,35 @@ class Article extends Component {
       title: PropTypes.string.isRequired,
       text: PropTypes.string
     }).isRequired
-  }
+  };
 
   render() {
     const { article, toggleOpen, isOpen } = this.props;
 
     return (
-      <div>
+      <div ref={this.setContainerRef}>
         <h3>{article.title}</h3>
-        <button onClick = {toggleOpen}>
-          {isOpen ? 'Close' : 'Open'}
-        </button>
+        <button onClick={toggleOpen}>{isOpen ? "Close" : "Open"}</button>
         {this.getBody()}
       </div>
     );
   }
 
+  setContainerRef = ref => {
+    this.container = ref;
+    // console.log('---', ref);
+  };
+
   getBody() {
     const { article, isOpen } = this.props;
-    return (isOpen) ? (
+    return isOpen ? (
       <div>
         <section>{article.text}</section>
-        <CommentList comments = {article.comments} />
+        <CommentList comments={article.comments} />
       </div>
-    ) : null
+    ) : null;
   }
-
 }
 
-export default toggleOpen(Article)
+// export default toggleOpen(Article)
+export default Article;

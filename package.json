@@ -57,8 +57,20 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
+    "prettier": "prettier --write \"**/*.js\"",
     "test": "node scripts/test.js"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+  "*.js": [
+    "yarn run prettier",
+    "git add"
+  ]
+},
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -113,5 +125,10 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "husky": "^1.2.0",
+    "lint-staged": "^8.1.0",
+    "prettier": "1.15.3"
   }
 }

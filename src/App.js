@@ -1,15 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 // import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
-import ArticleList from './article-list/ArticleList';
-
+import ArticleList from "./article-list/ArticleList";
 
 class App extends Component {
   render() {
-    return (
-      <ArticleList />
-    );
+    return <ArticleList />;
   }
 }
 
