@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import Article from "./article/Article";
-import { articles } from "../fixtures";
-import accordion from "../decorators/accordion";
+import React, { Component } from 'react';
+import Article from '../article';
+import { articles } from '../../fixtures';
+import accordion from '../../decorators/accordion';
 
 class ArticleList extends Component {
   // state = {
@@ -9,7 +9,7 @@ class ArticleList extends Component {
   // }
   render() {
     return articles.map(article => (
-      <li key={article.id}>
+      <li key={article.id} className="test--article-list__item">
         <Article
           article={article}
           isOpen={article.id === this.props.openItemId}
@@ -29,4 +29,6 @@ class ArticleList extends Component {
   // }
 }
 
-export default accordion(ArticleList);
+const ArticleListWithAccordion = accordion(ArticleList);
+
+export default ArticleListWithAccordion;

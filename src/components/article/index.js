@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 // import logo from './logo.svg';
-import "./Article.css";
-import PropTypes from "prop-types";
-import CommentList from "../comment-list/CommentList";
+import './style.css';
+import PropTypes from 'prop-types';
+import CommentList from '../comment-list';
 // import toggleOpen from '../../decorators/toggleOpen';
 
 class Article extends Component {
@@ -20,7 +20,9 @@ class Article extends Component {
     return (
       <div ref={this.setContainerRef}>
         <h3>{article.title}</h3>
-        <button onClick={toggleOpen}>{isOpen ? "Close" : "Open"}</button>
+        <button onClick={toggleOpen} className="test--article__btn">
+          {isOpen ? 'Close' : 'Open'}
+        </button>
         {this.getBody()}
       </div>
     );
@@ -34,10 +36,10 @@ class Article extends Component {
   getBody() {
     const { article, isOpen } = this.props;
     return isOpen ? (
-      <div>
-        <section>{article.text}</section>
+      <section className="test--article__body">
+        {article.text}
         <CommentList comments={article.comments} />
-      </div>
+      </section>
     ) : null;
   }
 }

@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import Comment from "./comment/Comment";
-import toggleOpen from "../../decorators/toggleOpen";
+import React, { Component } from 'react';
+import Comment from '../comment';
+import toggleOpen from '../../decorators/toggleOpen';
 
 class CommentList extends Component {
   static defaultProps = {
@@ -11,7 +11,7 @@ class CommentList extends Component {
     return (
       <div>
         <button onClick={this.props.toggleOpen}>
-          {this.props.isOpen ? "Hide comments" : "Show comments"}
+          {this.props.isOpen ? 'Hide comments' : 'Show comments'}
         </button>
         <ul>{this.getComments()}</ul>
       </div>
