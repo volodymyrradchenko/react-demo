@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import SelectFilter from './select';
 import DateRange from './date-range';
 
+import { connect } from 'react-redux';
+
 class Filters extends Component {
   render() {
     return (
@@ -14,4 +16,6 @@ class Filters extends Component {
   }
 }
 
-export default Filters;
+export default connect(({ articles }) => ({
+  articles
+}))(Filters);

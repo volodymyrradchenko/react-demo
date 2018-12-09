@@ -15,11 +15,12 @@ class Article extends Component {
   };
 
   render() {
-    const { article, toggleOpen, isOpen } = this.props;
+    const { article, toggleOpen, isOpen, handleDelete } = this.props;
 
     return (
       <div ref={this.setContainerRef}>
         <h3>{article.title}</h3>
+        <button onClick={handleDelete}>Delete</button>
         <button onClick={toggleOpen} className="test--article__btn">
           {isOpen ? 'Close' : 'Open'}
         </button>

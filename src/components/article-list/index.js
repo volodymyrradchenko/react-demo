@@ -1,19 +1,32 @@
 import React, { Component } from 'react';
 import Article from '../article';
-import { articles } from '../../fixtures';
+import PropTypes from 'prop-types';
 import accordion from '../../decorators/accordion';
 
+import { connect } from 'react-redux';
+import { deleteArticle } from '../../ac';
+
 class ArticleList extends Component {
+  static propTypes = {
+    articles: PropTypes.array.isRequired,
+    // fetchData: PropTypes.func,
+
+    //from accordion decorator
+    openItemId: PropTypes.string,
+    toggleOpen: PropTypes.func
+  };
   // state = {
   //   openArticleId: null
   // }
   render() {
+    const { articles } = this.props;
     return articles.map(article => (
       <li key={article.id} className="test--article-list__item">
         <Article
           article={article}
           isOpen={article.id === this.props.openItemId}
           toggleOpen={this.props.toggleOpen(article.id)}
+          handleDelete={this.props.deleteArticle.bind(this, article.id)}
           // toggleOpen = {this.toggleOpenArticle.bind(this, article.id)}
         />
       </li>
@@ -31,4 +44,9 @@ class ArticleList extends Component {
 
 const ArticleListWithAccordion = accordion(ArticleList);
 
-export default ArticleListWithAccordion;
+export default connect(
+  ({ articles }) => ({
+    articles
+  }),
+  { deleteArticle }
+)(ArticleListWithAccordion);
